@@ -21,13 +21,7 @@ export default {
   methods: {
     addTodo() {
       if(this.item.itemName !== ''){
-        //let obj = this.item;
-        let obj = {
-          completed: this.item.completed,
-          itemName: this.item.itemName
-        }
-        window.localStorage.setItem(obj.itemName, JSON.stringify(obj));
-        console.log(JSON.stringify(this.item));
+        this.$emit('addItemFunction', this.item);
         this.clearInput();
       }
       

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(item, index) in items" v-bind:key="item.itemName" class="shadow">
+      <li v-for="(item, index) in propsdata" v-bind:key="item.itemName" class="shadow">
         <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted: item.completed}" 
            v-on:click="toggleComplete(item)"></i>
         <span v-bind:class="{textCompleted: item.completed}">{{ item.itemName }}</span>
@@ -15,22 +15,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      items: []
-    }
-  },
-  created : function() {
-    if(localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        console.log("로컬스토리지 갯수 : " + localStorage.length);
-        // stringify된 JSON 문자열을 다시 오브젝트로 변경
-        this.items.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        // this.todoiItems.push(localStorage.key(i)));
-        
-      }
-    } 
-  },
+  props: ['propsdata'],
   methods: {
     removeTodo(item, index){
       console.log(JSON.stringify(item));
